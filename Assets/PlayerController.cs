@@ -16,16 +16,13 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-		if (Input.GetAxis("Vertical") > 0 && rigidbody2D.velocity.x < 2)
+		if (Input.GetAxis("Vertical") > 0 && rigidbody2D.velocity.y < 2)
 		{
 			gameObject.rigidbody2D.AddForce(new Vector2(0, (Input.GetAxis("Vertical"))) * 25);
-			Mathf.Clamp(rigidbody2D.velocity.x, -5, 2);
+			Mathf.Clamp(rigidbody2D.velocity.y, -5, 2);
 			print(rigidbody2D.velocity.y);
 		}
-		if (Input.GetKey(leftKey))
-			gameObject.rigidbody2D.AddForce(Vector2.right * -25);
-		if (Input.GetKey(rightKey))
-			gameObject.rigidbody2D.AddForce(Vector2.right * 25);
+		gameObject.rigidbody2D.AddForce(Input.GetAxis("Horisontal") * -25);
 		if (Input.GetKey(downKey))
 		{
 
