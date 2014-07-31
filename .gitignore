@@ -1,3 +1,7 @@
 *.meta
 *.db
 *.suo
+*.csproj
+*.csproj
+*.dll
+*.mdb
