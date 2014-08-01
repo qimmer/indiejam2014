@@ -14,12 +14,18 @@ public class FollowPlayers : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		float x = ((player1.transform.position.x - player2.transform.position.x) / 2.0f + player2.transform.position.x);
-		transform.localPosition = (new Vector3(x, 8, -10));
+        float dist = (player1.transform.position - player2.transform.position).magnitude;
+		Vector3 center = ((player1.transform.position - player2.transform.position) / 2.0f + player2.transform.position);
+		//transform.localPosition = (new Vector3(x, 8, -10));
 
-		if(player1.transform.position.x > player2.transform.position.x)
+		/*if(player1.transform.position.x > player2.transform.position.x)
 			camera.orthographicSize = Mathf.Abs(Mathf.Clamp(player1.transform.position.x - player2.transform.position.x, 14, 20));
 		else
-			camera.orthographicSize = Mathf.Abs(Mathf.Clamp(player2.transform.position.x - player1.transform.position.x, 14, 20));
+			camera.orthographicSize = Mathf.Abs(Mathf.Clamp(player2.transform.position.x - player1.transform.position.x, 14, 20));*/
+
+        transform.LookAt(center);
+        transform.Rotate(new Vector3(Mathf.Sin(Time.time * 0.9f) * 1.3f, Mathf.Cos(Time.time * 1.3f) * 0.8f, 0));
+
+        camera.fieldOfView = 40.0f + dist* 0.8f;
 	}
 }

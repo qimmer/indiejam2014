@@ -34,7 +34,9 @@ public class PickUpZone : MonoBehaviour
 			if (zoneBlocks< 3)
 			{
 				GameObject newBlock = blocks[Random.Range (0, blocks.Length)];
-				Instantiate(newBlock, spawnpoints[Random.Range (0, spawnpoints.Length)].transform.position, newBlock.transform.rotation);
+				GameObject newObject = (GameObject)Instantiate(newBlock, spawnpoints[Random.Range (0, spawnpoints.Length)].transform.position, newBlock.transform.rotation);
+                newObject.rigidbody2D.AddTorque(Random.Range(-20.0f, 20.0f));
+                
 			}
 		}
 

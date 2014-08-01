@@ -10,6 +10,6 @@ public class WorldRotator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Rotate(new Vector3(0, 1, 0), Time.deltaTime);
+        transform.localPosition = new Vector3(Mathf.Sin(Time.time * 0.2f) * 8, transform.localPosition.y, Mathf.Cos(Time.time * 0.3f) * 8);
 	}
 }
