@@ -20,3 +20,5 @@ indiejam2014.userprefs
 
 *.sln
 >>>>>>> origin/master
+*.dll
+*.mdb
