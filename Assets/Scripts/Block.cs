@@ -4,6 +4,7 @@ using System.Collections;
 public class Block : MonoBehaviour {
 
     float DamageMultiplier = 0.1f;
+    GameObject owner = null;
 
     public float Health;
     public float Armor;
@@ -22,5 +23,18 @@ public class Block : MonoBehaviour {
     public virtual void OnCollisionEnter(Collision col)
     {
         Health -= (col.relativeVelocity.magnitude * DamageMultiplier) / Armor;
+    }
+
+    public GameObject Owner
+    {
+        get
+        {
+            return this.owner;
+        }
+        set
+        {
+            this.owner = value;
+        }
+        
     }
 }
