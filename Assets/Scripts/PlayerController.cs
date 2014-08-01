@@ -19,10 +19,11 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetAxis("Vertical") > 0 && rigidbody2D.velocity.y < 2)
 		{
 			gameObject.rigidbody2D.AddForce(new Vector2(0, (Input.GetAxis("Vertical"))) * 25);
-			Mathf.Clamp(rigidbody2D.velocity.y, -5, 2);
+			//Mathf.Clamp(rigidbody2D.velocity.y, -5, 2);
 			print(rigidbody2D.velocity.y);
 		}
-		gameObject.rigidbody2D.AddForce(Input.GetAxis("Horisontal") * -25);
+
+		gameObject.rigidbody2D.AddForce(new Vector2(Input.GetAxis("Horizontal"),0) * 25);
 		if (Input.GetKey(downKey))
 		{
 
