@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RopeTrigger : MonoBehaviour {
 
-    GameObject attachedObject = null;
+    public GameObject attachedObject = null;
     float lastGrabTime = 0.0f;
 
 	// Use this for initialization

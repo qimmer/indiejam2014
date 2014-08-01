@@ -22,6 +22,15 @@ public class PickUpZone : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
+		foreach (GameObject block in blocksInZone)
+		{
+			if(!block)
+			{
+				blocksInZone.Remove(block);
+				zoneBlocks--;
+				return;
+			}
+		}
 		if (Input.GetKeyUp (KeyCode.L))
 			print (zoneBlocks + " blocks in zone");
 		if (Input.GetKeyUp (KeyCode.P))
@@ -47,7 +56,7 @@ public class PickUpZone : MonoBehaviour
 		if (!blocksInZone.Contains(col.gameObject) && col.tag == "Block")
 		{
 		    blocksInZone.AddLast(col.gameObject);
-			print (blocksInZone.Last.Value.gameObject.name);
+			//print (blocksInZone.Last.Value.gameObject.name);
 			zoneBlocks++;
 		}
 
@@ -61,7 +70,7 @@ public class PickUpZone : MonoBehaviour
 		if (blocksInZone.Contains(col.gameObject))
 		{
 			blocksInZone.Remove(col.gameObject);
-			print("Removed: " + col.gameObject.name);
+			//print("Removed: " + col.gameObject.name);
 			zoneBlocks--;
 		}
 	}

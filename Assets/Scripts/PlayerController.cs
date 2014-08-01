@@ -35,8 +35,10 @@ public class PlayerController : MonoBehaviour
 
         gameObject.rigidbody2D.velocity = new Vector2(Mathf.Clamp(gameObject.rigidbody2D.velocity.x * 0.93f, -55, 55), Mathf.Clamp(gameObject.rigidbody2D.velocity.y, -4, 12));
 
-        if (Input.GetButton("Player" + PlayerIndex + "_Detach"))
+        if (Input.GetButtonUp("Player" + PlayerIndex + "_Detach"))
         {
+			if(transform.FindChild("Trigger").gameObject.GetComponent<RopeTrigger>().attachedObject)
+				transform.FindChild("Trigger").gameObject.GetComponent<RopeTrigger>().attachedObject.GetComponent<Block>().CountDown();
             transform.FindChild("Trigger").gameObject.GetComponent<RopeTrigger>().ReleaseBox();
         }
     }

@@ -13,9 +13,9 @@ public class ExplosiveBlock : Block {
 	
 	}
 
-    public override void OnCollisionEnter(Collision col)
+    public override void OnCollisionEnter2D(Collision2D col)
     {
-        base.OnCollisionEnter(col);
+        base.OnCollisionEnter2D(col);
 
         if( col.relativeVelocity.magnitude > 2 )
         {
