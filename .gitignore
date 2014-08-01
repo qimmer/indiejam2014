@@ -7,8 +7,16 @@
 *.unityproj
 *.sln
 
+<<<<<<< HEAD
 indiejam2014.userprefs
 
 # emacs stuff
 *~
 *.userprefs
+=======
+*.sln
+
+*.csproj
+
+*.sln
+>>>>>>> origin/master

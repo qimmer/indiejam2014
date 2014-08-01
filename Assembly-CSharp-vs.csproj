@@ -50,7 +50,11 @@
      <Compile Include="Assets\Scripts\BlockSpawner.cs" />
      <Compile Include="Assets\Scripts\ExplosiveBlock.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+<<<<<<< HEAD
+     <Compile Include="Assets\Scripts\PlayerController2.cs" />
+=======
      <Compile Include="Assets\Scripts\RopeTrigger.cs" />
+>>>>>>> FETCH_HEAD
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
