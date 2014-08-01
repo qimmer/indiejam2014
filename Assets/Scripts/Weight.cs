@@ -30,6 +30,7 @@ public class Weight : MonoBehaviour {
             {
 				if (!block)
 				{
+					//weight -= block.rigidbody2D.mass;
 					blocks.Remove(block);
 					return;
 				}

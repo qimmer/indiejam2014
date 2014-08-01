@@ -62,8 +62,8 @@ public class Block : MonoBehaviour {
 		Health--;
 		if(Health <= 0)
 		{
-			if (owner)
-				owner.transform.FindChild("Trigger").gameObject.GetComponent<RopeTrigger>().ReleaseBox();
+			//if (owner)
+			//	owner.transform.FindChild("Trigger").gameObject.GetComponent<RopeTrigger>().ReleaseBox();
 			Destroy (gameObject);
 			print ("Crash!");
 
