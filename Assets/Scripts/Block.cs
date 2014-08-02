@@ -31,7 +31,7 @@ public class Block : MonoBehaviour {
 				gameObject.tag = "Explosion";
 				if(GetComponent<CircleCollider2D>().radius < 4)
 				{
-					GetComponent<CircleCollider2D>().radius = GetComponent<CircleCollider2D>().radius + 0.1f;
+					GetComponent<CircleCollider2D>().radius = GetComponent<CircleCollider2D>().radius + 0.5f;
 				}
 				else
 				{

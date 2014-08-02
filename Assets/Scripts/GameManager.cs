@@ -6,8 +6,12 @@ public class GameManager : MonoBehaviour {
     const int NUM_PLAYERS = 2;
 
     double[] playerScore = new double[NUM_PLAYERS+1];
+	bool gameWon = false;
 
+	public GUIText winText;
+	public double winScore = 10000;
     public double ScoreMultiplier = 0.1;
+	public GameObject restartButton;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +23,22 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(gameWon)
+			return;
+		if (playerScore[1] > winScore)
+		{
+			winText.enabled = true;
+			restartButton.guiTexture.enabled = true;
+			winText.text = "Green player wins!";
+			gameWon = true;
+		}
+		if (playerScore[2] > winScore)
+		{
+			winText.enabled = true;
+			restartButton.guiTexture.enabled = true;
+			winText.text = "Blue player wins!";
+			gameWon = true;
+		}
 	}
 
     public int GetPlayerScore(int playerIndex)
@@ -29,6 +48,7 @@ public class GameManager : MonoBehaviour {
 
     public void AddScore(int playerIndex, float score)
     {
-        playerScore[playerIndex] += ScoreMultiplier * score;
+		if(!gameWon)
+        	playerScore[playerIndex] += ScoreMultiplier * score;
     }
 }
