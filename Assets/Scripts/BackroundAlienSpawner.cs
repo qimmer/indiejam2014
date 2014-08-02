@@ -46,7 +46,7 @@ public class BackroundAlienSpawner : MonoBehaviour {
 
         if( Time.time > nextExplosion )
         {
-            nextExplosion = Time.time + Random.Range(0.1f, 0.5f);
+            nextExplosion = Time.time + Random.Range(0.5f, 1.5f);
             GameObject.Find("GameManager").GetComponent<GameManager>().CreateExplosion(transform.position + new Vector3(Random.Range(-Range, Range), Random.Range(0, 40), Random.Range(0, 140)), 1.0f);
         }
 	}

@@ -13,9 +13,12 @@ public class GameManager : MonoBehaviour {
     public double ScoreMultiplier = 0.1;
 	public GameObject restartButton;
     public GameObject explosionPrefab;
+    public AudioClip[] farExplosions;
+    public AudioClip[] nearExplosions;
 
 	// Use this for initialization
 	void Start () {
+        DontDestroyOnLoad(gameObject);
         for (int i = 0; i < NUM_PLAYERS; ++i) 
         {
             playerScore[i] = 0.0;
@@ -56,6 +59,19 @@ public class GameManager : MonoBehaviour {
     public void CreateExplosion(Vector3 position, float size)
     {
         GameObject explosion = (GameObject)Instantiate(explosionPrefab, position, Quaternion.identity);
+        
+        if( position.z > 30.0f )
+        {
+            AudioClip clip = farExplosions[Random.Range(0, farExplosions.Length - 1)];
+            explosion.audio.clip = clip;
+        }
+        else
+        {
+            AudioClip clip = nearExplosions[Random.Range(0, nearExplosions.Length - 1)];
+            explosion.audio.clip = clip;
+        }
+
+        explosion.audio.Play();
 
         Destroy(explosion, 5.0f);
     }
