@@ -28,6 +28,12 @@ public class Weight : MonoBehaviour {
             float weight = 0.0f;
             foreach(Block block in blocks)
             {
+				if (!block)
+				{
+					//weight -= block.rigidbody2D.mass;
+					blocks.Remove(block);
+					return;
+				}
                 if (block.rigidbody2D.IsSleeping())
                 {
                     weight += block.rigidbody2D.mass;
