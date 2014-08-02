@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
 	public double winScore = 10000;
     public double ScoreMultiplier = 0.1;
 	public GameObject restartButton;
+	public GameObject gameMenuButton;
     public GameObject explosionPrefab;
     public AudioClip[] farExplosions;
     public AudioClip[] nearExplosions;
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour {
 		{
 			winText.enabled = true;
 			restartButton.guiTexture.enabled = true;
+			gameMenuButton.guiText.enabled = true;
 			winText.text = "Green player wins!";
 			gameWon = true;
 		}
@@ -50,6 +52,7 @@ public class GameManager : MonoBehaviour {
 		{
 			winText.enabled = true;
 			restartButton.guiTexture.enabled = true;
+			gameMenuButton.guiText.enabled = true;
 			winText.text = "Blue player wins!";
 			gameWon = true;
 		}
