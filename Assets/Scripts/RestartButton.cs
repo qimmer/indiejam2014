@@ -11,7 +11,7 @@ public class RestartButton : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetKeyUp (KeyCode.JoystickButton7) || Input.GetKeyUp (KeyCode.JoystickButton9))
+		if (Input.GetKeyUp (KeyCode.JoystickButton7) && GetComponent<GUITexture>().enabled || Input.GetKeyUp (KeyCode.JoystickButton9) && GetComponent<GUITexture>().enabled)
 		{
 			Application.LoadLevel(1);
 		}
