@@ -84,5 +84,7 @@ public class GameManager : MonoBehaviour {
         explosion.audio.Play();
 
         Destroy(explosion, 5.0f);
+
+        Camera.main.GetComponent<FollowPlayers>().Stress += 15.0f / ((position.z+1.0f)*0.2f);
     }
 }

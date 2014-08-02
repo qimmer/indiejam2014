@@ -15,7 +15,7 @@ public class PickUpZone : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		lastSpawnTimer = Time.time;
+		lastSpawnTimer = Time.time - interval;
 		zoneBlocks = 0;
 	}
 	
@@ -44,7 +44,10 @@ public class PickUpZone : MonoBehaviour
 			{
 				GameObject newBlock = blocks[Random.Range (0, blocks.Length)];
 				GameObject newObject = (GameObject)Instantiate(newBlock, spawnpoints[Random.Range (0, spawnpoints.Length)].transform.position, newBlock.transform.rotation);
-                newObject.rigidbody2D.AddTorque(Random.Range(-20.0f, 20.0f));
+
+                float scaleAdder = Random.Range(0.6f, 1.4f);
+                newObject.transform.localScale = newObject.transform.localScale * scaleAdder;
+                newObject.rigidbody2D.AddTorque(Random.Range(90.0f, 600.0f));
                 
 			}
 		}

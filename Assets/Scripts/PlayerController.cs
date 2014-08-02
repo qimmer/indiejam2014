@@ -25,15 +25,15 @@ public class PlayerController : MonoBehaviour
 
         if (gameObject.rigidbody2D.velocity.y < 6 && Input.GetButton("Player" + PlayerIndex + "_Throttle"))
         {
-            gameObject.rigidbody2D.AddForce(new Vector2(0.0f, 600.0f));
+            gameObject.rigidbody2D.AddForce(new Vector2(0.0f, 550.0f));
         }
 
         if (!Input.GetButton("Player" + PlayerIndex + "_Throttle"))
-            gameObject.rigidbody2D.AddForce(new Vector2(0.0f, 200.0f));
+            gameObject.rigidbody2D.AddForce(new Vector2(0.0f, 10.0f));
 
-        gameObject.rigidbody2D.AddForce(new Vector2(Input.GetAxis("Player" + PlayerIndex + "_Axis") * 540.0f, 0));
+        gameObject.rigidbody2D.AddForce(new Vector2(Input.GetAxis("Player" + PlayerIndex + "_Axis") * 340.0f, 0));
 
-        gameObject.rigidbody2D.velocity = new Vector2(Mathf.Clamp(gameObject.rigidbody2D.velocity.x * 0.93f, -55, 55), Mathf.Clamp(gameObject.rigidbody2D.velocity.y, -4, 12));
+        gameObject.rigidbody2D.velocity = new Vector2(Mathf.Clamp(gameObject.rigidbody2D.velocity.x * 0.93f, -7, 7), Mathf.Clamp(gameObject.rigidbody2D.velocity.y, -4, 10));
 
         if (Input.GetButtonUp("Player" + PlayerIndex + "_Detach"))
         {
@@ -41,6 +41,13 @@ public class PlayerController : MonoBehaviour
 				transform.FindChild("Trigger").gameObject.GetComponent<RopeTrigger>().attachedObject.GetComponent<Block>().CountDown();
             transform.FindChild("Trigger").gameObject.GetComponent<RopeTrigger>().ReleaseBox();
         }
+    }
+
+    void Update()
+    {
+        Vector3 vel = new Vector3(rigidbody2D.velocity.x, Mathf.Max(rigidbody2D.velocity.y, 0.0f), 0.0f);
+        audio.pitch = 0.9f + vel.magnitude / 8.0f + (float)(PlayerIndex-1) * 0.4f;
+        audio.volume = vel.magnitude / 60.0f;
     }
 
 }

@@ -18,7 +18,7 @@ public class RopeTrigger : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Block" && attachedObject == null && Time.time > lastGrabTime + 1.0f)
+        if (col.gameObject.tag == "Block" && attachedObject == null && Time.time > lastGrabTime + 2.0f)
         {
             if (col.gameObject.GetComponent<Block>().Owner != null)
                 return;
