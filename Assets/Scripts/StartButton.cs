@@ -6,7 +6,7 @@ public class StartButton : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetKeyUp (KeyCode.Joystick1Button17))
+		//if (Input.GetKeyUp (KeyCode.Joystick1Button17))
 	}
 
 	void OnMouseDown()
