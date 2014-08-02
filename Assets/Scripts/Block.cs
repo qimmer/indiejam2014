@@ -15,10 +15,12 @@ public class Block : MonoBehaviour {
 
 	public GameObject explosion;
 	GameObject explosionHolder;
+	float TnTick;
 
 	// Use this for initialization
-	void Start () 
+	void Awake () 
 	{
+		TnTick = fuseLength;
 		fuseTime = 0;
 	}
 	
@@ -31,9 +33,16 @@ public class Block : MonoBehaviour {
 			{
 				print (Mathf.RoundToInt(Time.time- fuseTime - fuseLength));
 
-				transform.FindChild("TnText").GetComponent<TextMesh>().text = "" + Mathf.Abs(Mathf.RoundToInt(Time.time- fuseTime - fuseLength));
+				int fuseCurrent = Mathf.Abs(Mathf.RoundToInt(Time.time- fuseTime - fuseLength));
 
-				if(Mathf.Abs(Mathf.RoundToInt(Time.time- fuseTime - fuseLength)) <= 0)
+				if (fuseCurrent != TnTick)
+				{
+					audio.Play();
+				}
+
+				transform.FindChild("TnText").GetComponent<TextMesh>().text = "" + fuseCurrent;
+
+				if(fuseCurrent <= 0)
 				   transform.FindChild("TnText").GetComponent<TextMesh>().text = "";
 
 			}
