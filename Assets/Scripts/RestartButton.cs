@@ -9,13 +9,17 @@ public class RestartButton : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+	{
+		if (Input.GetKeyUp (KeyCode.JoystickButton7) || Input.GetKeyUp (KeyCode.JoystickButton9))
+		{
+			Application.LoadLevel(1);
+		}
 	}
 
 	void OnMouseOver()
 	{
-		print ("MouseOver");
+		//print ("MouseOver");
 	}
 
 	void OnMouseDown()

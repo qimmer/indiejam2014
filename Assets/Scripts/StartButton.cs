@@ -4,6 +4,10 @@ using System.Collections;
 public class StartButton : MonoBehaviour {
 	public double winScore = 500;
 
+	void Update()
+	{
+		if (Input.GetKeyUp (KeyCode.Joystick1Button17))
+	}
 
 	void OnMouseDown()
 	{

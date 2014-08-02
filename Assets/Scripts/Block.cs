@@ -37,6 +37,7 @@ public class Block : MonoBehaviour {
 
 				if (fuseCurrent != TnTick)
 				{
+					TnTick = fuseCurrent;
 					audio.Play();
 				}
 
