@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
 	public double winScore = 10000;
     public double ScoreMultiplier = 0.1;
 	public GameObject restartButton;
+    public GameObject explosionPrefab;
 
 	// Use this for initialization
 	void Start () {
@@ -50,5 +51,12 @@ public class GameManager : MonoBehaviour {
     {
 		if(!gameWon)
         	playerScore[playerIndex] += ScoreMultiplier * score;
+    }
+
+    public void CreateExplosion(Vector3 position, float size)
+    {
+        GameObject explosion = (GameObject)Instantiate(explosionPrefab, position, Quaternion.identity);
+
+        Destroy(explosion, 5.0f);
     }
 }
