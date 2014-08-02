@@ -13,21 +13,38 @@ public class Block : MonoBehaviour {
 	public float fuseTime = 0;
 	public float fuseLength = 10;
 
-	public float radius = 5.0F;
-	public float power = 10.0F;
+	public GameObject explosion;
+	GameObject explosionHolder;
 
 	// Use this for initialization
 	void Start () 
 	{
-        //Health = 1.0f;
+		fuseTime = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
 		if(fuseTime != 0)
+		{
+			if (fuseTime + fuseLength > Time.time)
+			{
+				print (Mathf.RoundToInt(Time.time- fuseTime - fuseLength));
+
+				transform.FindChild("TnText").GetComponent<TextMesh>().text = "" + Mathf.Abs(Mathf.RoundToInt(Time.time- fuseTime - fuseLength));
+
+				if(Mathf.Abs(Mathf.RoundToInt(Time.time- fuseTime - fuseLength)) <= 0)
+				   transform.FindChild("TnText").GetComponent<TextMesh>().text = "";
+
+			}
+
 			if (fuseTime + fuseLength < Time.time)
 			{
+				if (isTNT)
+				{
+					isTNT = false;
+					explosionHolder = (GameObject)Instantiate(explosion, transform.position, Quaternion.identity);
+				}
 				gameObject.tag = "Explosion";
 				if(GetComponent<CircleCollider2D>().radius < 4)
 				{
@@ -35,11 +52,14 @@ public class Block : MonoBehaviour {
 				}
 				else
 				{
-					Destroy (gameObject);
 					print("BOOM!");
+					fuseTime = 0;
+					Destroy(explosionHolder, 1);
+					Destroy (gameObject);
 				}
 
 			}
+		}
 	}
 
     public virtual void OnCollisionEnter2D(Collision2D col)
@@ -60,10 +80,18 @@ public class Block : MonoBehaviour {
 	{
 		print ("Smash!");
 		Health--;
+		if(Health <= 1 && isTNT)
+		{
+			fuseTime = Time.time;
+			fuseLength = 1;
+			return;
+		}
 		if(Health <= 0)
 		{
 			//if (owner)
 			//	owner.transform.FindChild("Trigger").gameObject.GetComponent<RopeTrigger>().ReleaseBox();
+			explosionHolder = (GameObject)Instantiate(explosion, transform.position, Quaternion.identity);
+			Destroy (explosionHolder, 0.7f);
 			Destroy (gameObject);
 			print ("Crash!");
 
