@@ -8,7 +8,7 @@ public class StartButton : MonoBehaviour {
 	void OnMouseDown()
 	{
 		print ("Click!");
-		GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().winScore = winScore;
+		PlayerPrefs.SetFloat("WinScore", (float)winScore);
 		Application.LoadLevel(1);
 	}
 }

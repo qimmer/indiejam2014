@@ -16,13 +16,23 @@ public class GameManager : MonoBehaviour {
     public AudioClip[] farExplosions;
     public AudioClip[] nearExplosions;
 
+    void OnLevelWasLoaded(int level)
+    {
+        winScore = (double)PlayerPrefs.GetFloat("WinScore");
+        gameWon = false;
+        winText.enabled = false;
+        audio.Stop();
+
+    }
 	// Use this for initialization
 	void Start () {
-        DontDestroyOnLoad(gameObject);
+        
         for (int i = 0; i < NUM_PLAYERS; ++i) 
         {
             playerScore[i] = 0.0;
         }
+
+        audio.Play();
 	}
 	
 	// Update is called once per frame
