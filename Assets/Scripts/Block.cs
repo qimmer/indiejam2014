@@ -31,12 +31,11 @@ public class Block : MonoBehaviour {
 		{
 			if (fuseTime + fuseLength > Time.time)
 			{
-				print (Mathf.RoundToInt(Time.time- fuseTime - fuseLength));
-
 				int fuseCurrent = Mathf.Abs(Mathf.RoundToInt(Time.time- fuseTime - fuseLength));
 
 				if (fuseCurrent != TnTick)
 				{
+					print (Mathf.RoundToInt(Time.time- fuseTime - fuseLength));
 					TnTick = fuseCurrent;
 					audio.Play();
 				}

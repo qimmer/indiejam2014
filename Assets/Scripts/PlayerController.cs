@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour
 
     public int PlayerIndex;
 
+	public float speed = 0;
+	public float maxVelocityBonus = 0;
+
     // Use this for initialization
     void Start()
     {
@@ -25,15 +28,15 @@ public class PlayerController : MonoBehaviour
 
         if (gameObject.rigidbody2D.velocity.y < 6 && Input.GetButton("Player" + PlayerIndex + "_Throttle"))
         {
-            gameObject.rigidbody2D.AddForce(new Vector2(0.0f, 550.0f));
+            gameObject.rigidbody2D.AddForce(new Vector2(0.0f, (550.0f + speed)));
         }
 
         if (!Input.GetButton("Player" + PlayerIndex + "_Throttle"))
             gameObject.rigidbody2D.AddForce(new Vector2(0.0f, 10.0f));
 
-        gameObject.rigidbody2D.AddForce(new Vector2(Input.GetAxis("Player" + PlayerIndex + "_Axis") * 340.0f, 0));
+        gameObject.rigidbody2D.AddForce(new Vector2(Input.GetAxis("Player" + PlayerIndex + "_Axis") * (340.0f + speed), 0));
 
-        gameObject.rigidbody2D.velocity = new Vector2(Mathf.Clamp(gameObject.rigidbody2D.velocity.x * 0.93f, -7, 7), Mathf.Clamp(gameObject.rigidbody2D.velocity.y, -4, 10));
+		gameObject.rigidbody2D.velocity = new Vector2(Mathf.Clamp(gameObject.rigidbody2D.velocity.x * 0.93f, (-7-maxVelocityBonus), (7+maxVelocityBonus)), Mathf.Clamp(gameObject.rigidbody2D.velocity.y, (-4-maxVelocityBonus), (maxVelocityBonus+10)));
 
         if (Input.GetButtonUp("Player" + PlayerIndex + "_Detach"))
         {
