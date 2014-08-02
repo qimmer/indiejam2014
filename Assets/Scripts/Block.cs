@@ -19,13 +19,25 @@ public class Block : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-        //Health = 1.0f;
+		fuseTime = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if(fuseTime != 0)
+		if(fuseTime != 0 && isTNT)
+		{
+			if (fuseTime + fuseLength > Time.time)
+			{
+				print (Mathf.RoundToInt(Time.time- fuseTime - fuseLength));
+
+				transform.FindChild("TnText").GetComponent<TextMesh>().text = "" + Mathf.Abs(Mathf.RoundToInt(Time.time- fuseTime - fuseLength));
+
+				if(Mathf.Abs(Mathf.RoundToInt(Time.time- fuseTime - fuseLength)) <= 0)
+				   transform.FindChild("TnText").GetComponent<TextMesh>().text = "";
+
+			}
+
 			if (fuseTime + fuseLength < Time.time)
 			{
 				gameObject.tag = "Explosion";
@@ -37,9 +49,11 @@ public class Block : MonoBehaviour {
 				{
 					Destroy (gameObject);
 					print("BOOM!");
+					fuseTime = 0;
 				}
 
 			}
+		}
 	}
 
     public virtual void OnCollisionEnter2D(Collision2D col)
