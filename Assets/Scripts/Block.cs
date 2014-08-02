@@ -43,7 +43,9 @@ public class Block : MonoBehaviour {
 				if (isTNT)
 				{
 					isTNT = false;
-					explosionHolder = (GameObject)Instantiate(explosion, transform.position, Quaternion.identity);
+					GameObject.Find("GameManager").GetComponent<GameManager>().CreateExplosion(transform.position, 1);
+					//explosionHolder = (GameObject)Instantiate(explosion, transform.position, Quaternion.identity);
+					//Destroy(explosionHolder, 1);
 				}
 				gameObject.tag = "Explosion";
 				if(GetComponent<CircleCollider2D>().radius < 4)
@@ -54,7 +56,7 @@ public class Block : MonoBehaviour {
 				{
 					print("BOOM!");
 					fuseTime = 0;
-					Destroy(explosionHolder, 1);
+
 					Destroy (gameObject);
 				}
 
