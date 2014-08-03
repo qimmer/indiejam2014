@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PowerUp : MonoBehaviour {
 
+	public GameObject powerUpText;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -17,6 +19,7 @@ public class PowerUp : MonoBehaviour {
 	{
 		if(col.transform.tag == "Player")
 		{
+			GameObject newText = (GameObject)Instantiate(powerUpText, transform.position, Quaternion.identity);
 			int power = Random.Range(1,4);
 			if (power == 0)
 			{
@@ -25,16 +28,19 @@ public class PowerUp : MonoBehaviour {
 			}
 			if (power == 1)
 			{
+				newText.GetComponent<TextMesh>().text = "Engine Upgraded";
 				print ("maxVelocityBonus");
 				col.gameObject.GetComponent<PlayerController>().maxVelocityBonus++;
 			}
 			if (power == 2)
 			{
+				newText.GetComponent<TextMesh>().text = "Thruster Upgraded";
 				print ("Speed");
 				col.gameObject.GetComponent<PlayerController>().speed = col.gameObject.GetComponent<PlayerController>().speed + 50;
 			}
 			if (power == 3)
 			{
+				newText.GetComponent<TextMesh>().text = "Anti-Grav Malfunction";
 				print ("Gravity2");
 				col.gameObject.GetComponent<Rigidbody2D>().gravityScale = col.gameObject.GetComponent<Rigidbody2D>().gravityScale * Random.Range(8,13) / 10;
 			}
